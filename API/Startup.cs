@@ -23,7 +23,7 @@ namespace API
         {
             services.AddUnitOfWorkService();
             services.AddAutoMapper(typeof(MappingProfile));
-
+            services.AddSignalR();
             services.AddContextService(_configuration);
 
             services.AddControllers();
