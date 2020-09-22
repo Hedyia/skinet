@@ -25,7 +25,14 @@ namespace API
             services.AddAutoMapper(typeof(MappingProfile));
             services.AddSignalR();
             services.AddContextService(_configuration);
-
+            services.AddCors(options =>
+           {
+               options.AddPolicy("mypolicy", builder => builder
+                .WithOrigins("https://localhost:4200")
+                .SetIsOriginAllowed((host) => true)
+                .AllowAnyMethod()
+                .AllowAnyHeader());
+           });
             services.AddControllers();
             services.AddHandleBadRequestService();
             services.AddOpenDocumentationService();
@@ -39,6 +46,7 @@ namespace API
             app.UseStatusCodePagesWithReExecute("/errors/{0}");
 
             app.UseHttpsRedirection();
+            app.UseCors("mypolicy");
 
             app.UseRouting();
 
