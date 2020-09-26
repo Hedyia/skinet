@@ -1,0 +1,7 @@
+<header class="ml-3">
+  <span *ngIf="this.totalCount&& this.totalCount > 0">Showing
+    <strong>{{(this.pageIndex -1) * this.pageSize +1}}-{{this.pageIndex * this.pageSize > this.totalCount ? this.totalCount : this.pageIndex * this.pageSize }}</strong>
+    of <strong>{{this.totalCount}}</strong>
+    Results</span>
+  <span *ngIf="this.totalCount === 0">There are <strong>0</strong> Results</span>
+</header>
